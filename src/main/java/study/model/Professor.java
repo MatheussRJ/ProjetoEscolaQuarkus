@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,4 +39,16 @@ public class Professor{
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "titular")
     private Disciplina disciplina;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tutor")
+    private List<Aluno> alunos;
+
+    @Column(name="data_atualizacao", nullable = false)
+    private LocalDateTime dateTime;
+
+    @PrePersist
+    public void prePersist(){
+        setDateTime(LocalDateTime.now());
+    }
+
 }

@@ -57,7 +57,7 @@ public class DisciplinaService {
     }
 
     public DisciplinaResponse buscaPorId(int id) {
-        log.info("Buscando aluno id-{}", id);
+        log.info("Buscando disciplina id-{}", id);
 
         Disciplina disciplina = repository.findById(id);
         return mapper.toResponse(disciplina);
