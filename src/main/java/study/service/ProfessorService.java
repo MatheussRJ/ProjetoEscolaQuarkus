@@ -65,7 +65,7 @@ public class ProfessorService {
                 .name(professorRequest.getName())
                 .build();
 
-        repository.persistAndFlush(entity);
+        repository.persist(entity);
 
         return mapper.toResponse(entity);
 

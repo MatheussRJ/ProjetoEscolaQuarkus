@@ -1,5 +1,7 @@
 package study.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,5 +52,17 @@ public class Aluno{
     @NotBlank (message = "Nome não pode ser nulo")
     @Column(name = "aluno_name", nullable = false)
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tutor")
+    private Professor tutor;
+
+    @Column(name="data_atualizacao", nullable = false)
+    private LocalDateTime dateTime;
+
+    @PrePersist
+    public void prePersist(){
+        setDateTime(LocalDateTime.now());
+    }
 
 }
